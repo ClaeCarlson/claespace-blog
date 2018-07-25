@@ -1,0 +1,577 @@
+body, html {
+	font-family: 'Open Sans', sans-serif;
+	margin: 0;
+	height: 100%;
+}
+
+#headerText {
+	line-height: 150px;
+	margin-top: 0px;
+	margin-left: 15px;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+
+#headeritems {
+	padding-top: 40px;
+	margin: 0 auto;
+	width: 50vh;
+	text-align: center;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+
+}
+
+#menu {
+	margin-top: 0;
+	padding-top: 0;
+	color: white;
+}
+
+.menuitem:hover {
+	cursor: pointer;
+	-webkit-stroke-width: 5.3px;
+      -webkit-stroke-color: #FFFFFF;
+      -webkit-fill-color: #FFFFFF;
+      text-shadow: 1px 0px 20px white;
+}
+
+/* The container <div> - needed to position the dropdown content */
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	width: 240px;
+	left: 0;
+	right: 0;
+	margin: auto;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.header {
+	font-family: 'Open Sans', sans-serif;
+	z-index: 2;
+	opacity: 0.8;
+	background-color: white;
+	width: 100%;
+	height: 100vh;
+	margin: 0px;
+}
+
+#blog {
+	vertical-align: middle;
+	display: inline-block;
+	font-family: 'Pacifico', cursive;
+	color: white;
+	font-size: 30px;
+	padding-left: 10px;
+	padding-top: 20px;
+	margin-top: -60px !important;
+	margin-bottom: 0px !important;
+
+}
+
+.icon {
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+}
+
+.icon:hover {
+	opacity: 1.0 !important;
+	cursor: pointer;
+
+	-webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+ -webkit-box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.67);
+-moz-box-shadow:    0px 0px 30px 0px rgba(255, 255, 255, 0.67);
+box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
+}
+
+.navicon {
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 40px;
+	height: 40px;
+
+}
+
+#nav {
+	height: 60px;
+	width: 100%;
+	z-index: 1000;
+	position: fixed;
+	}
+
+.navitem{
+	color: white;
+	display: inline-block;
+	line-height: 60px;
+	padding-left: 20px;
+}
+.navitem:hover {
+	cursor: pointer;
+	-webkit-stroke-width: 5.3px;
+      -webkit-stroke-color: #FFFFFF;
+      -webkit-fill-color: #FFFFFF;
+      text-shadow: 1px 0px 20px white;
+}
+
+#background {
+	/* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#signin {
+	font-size: 20px;
+	margin-top: 40px;
+	font-family: 'Roboto';
+	float: right;
+	margin-right: 10px;
+	color: white;
+	cursor: pointer;
+}
+
+#signshow {
+	display: none;
+}
+
+#projects {
+	cursor: pointer;
+	font-size: 20px;
+	margin-top: 40px;
+	float: right;
+	margin-right: 10px;
+	color: white;
+
+}
+
+#content {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #fffff2;
+	width: 100%;
+}
+#content:after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+#currentcategory {
+	font-size: 24px;
+	text-align: center;
+	padding-top: 20px;
+	color: orange;
+}
+
+.newpostModal {
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	background-color: blue;
+	padding: 15px;
+
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.fullpost {
+	display: none;
+	background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 90%; /* Could be more or less, depending on screen size */
+    height: 60%;
+    overflow: auto;
+    color: grey;
+    
+    
+}
+.fullpost::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.fullpost::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+.fullpost::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+
+.fullpost::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.fullpost::-webkit-scrollbar-track { 
+    background-color: #fff; 
+    border-radius: 8px; 
+} 
+
+#fulltitle {
+	font-size: 20px;
+	color: orange;
+}
+#cattime {
+
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}
+
+#fullcat {
+	
+	padding-right: 5px;
+}
+#fullcat:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	color: black;
+}
+
+#fulltime {
+	padding-left: 5px;
+	margin-right: 20px;
+
+}
+#fullimg {
+	max-height: 80%;
+	max-width: 100%;
+	display: block;
+	margin: auto;
+
+}
+#fullbody{
+	font-size: 15px;
+	padding: 10px;
+
+}
+
+#videocontainer {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+ }
+
+ #fullvideo{
+ 	margin: 0 auto;
+ 	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+ }
+
+/* Modal Content/Box */
+.modal-content {
+	display: none;
+
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 90%; /* Could be more or less, depending on screen size */
+    overflow: hidden;
+}
+
+.modal-content textarea {
+	resize: none;
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid lightgray;
+}
+
+#title {
+	width: 40%;
+	display: inline-block;
+	float: left;
+}
+#category {
+	width: 40%;
+	display: inline-block;
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid lightgray;
+	float: left;
+	margin-left: 20px;
+}
+#body {
+	width: 100%;
+	height: 200px;
+}
+#submit {
+	float: right;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post{
+	padding-top: 10px;
+	height: 160px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: gray;
+
+}
+.post:hover{
+	background-color: rgba(237, 237, 225, 1);
+	cursor: pointer;
+}
+.title{
+	padding-left: 16px;
+	margin-left: 150px;
+	word-break: break-word;
+	font-size: 20px;
+	position: absolute;
+	color: orange;
+
+  	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+}
+.imgframe{
+	padding: 16px;
+	margin-top: 6px;
+	position: relative;
+	float: left;
+	height: 120px;
+	width: 120px;
+	overflow: hidden;
+}
+.img{
+	position: absolute;
+	max-height: 120px;
+	width: auto;
+	top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+	margin: auto;
+}
+.defimg {
+	display: none;
+}
+
+.video {
+
+	display: none;
+}
+.cat{
+	position: absolute;
+	margin-top: 100px;
+	margin-left: 16px;
+	font-size: 14px;
+	padding: 2px;
+
+}
+.cat:hover{
+	text-decoration: underline;
+	color: black;
+	cursor: pointer;
+}
+.time{
+	margin-top: 123px;
+	float: right;
+	padding: 2px;
+	font-size: 12px;
+
+}
+.comments{
+	padding: 2px;
+	position: absolute;
+	margin-left: 16px;
+	margin-top: 123px;
+	font-size: 12px;
+}
+
+.postbody {
+	display: none;
+}
+
+#container{
+	position: relative;
+}
+
+#endposts {
+	padding-top: 20px;
+	text-align: center;
+	padding-bottom: 16px;
+	height: 30px;
+}
+
+#footer{
+	color: white;
+	padding-top: 20px;
+	text-align: center;
+	padding-bottom: 30px;
+	height: 30px;
+}
+#footer div{
+	cursor: pointer;
+	color: white;
+	border-radius: 5px;
+	display: inline-block;
+	background-color: orange;
+	padding: 10px;
+	bottom: 
+}
+#adv {
+	float: right;
+	margin-right: 40px;
+
+}
+#prev {
+	margin-left: 40px;
+	float: left;
+
+}
+
+.currentposts{
+	padding-right: 10px;
+}
+
+.allposts{
+	padding-left: 10px;
+	
+}
+.allposts:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+/** Category page
+**/
+.categoryheader {
+	font-family: 'Open Sans', sans-serif;
+	z-index: 2;
+	opacity: 0.8;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}
+
+#tileContent {
+	text-align: center;
+}
+.categoryTile{
+	padding: 10px;
+	display: inline-block;
+	
+	margin: 25px 25px auto;
+	width: 100px;
+	height: 80px;
+	color: white;
+	text-align: center;
+}
+.categoryTile img{
+	height: 100%;
+	width: auto;
+}.categoryTile:hover {
+	cursor: pointer;
+	-webkit-stroke-width: 5.3px;
+      -webkit-stroke-color: #FFFFFF;
+      -webkit-fill-color: #FFFFFF;
+      text-shadow: 1px 0px 20px white;
+}
+@media(min-width: 510px){
+.categoryTile{
+
+	height: 100px;
+
+}}
+@media(min-width: 650px){
+	
+#videocontainer {
+    padding-bottom: 330px;
+ }
+
+ #fullvideo{
+ 	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 600px;
+    height: 320px;
+ }
+
+
+}
+@media(min-width: 680px){
+	.categoryTile{
+		width: 150px;
+
+		height: 120px;
+
+}}
+@media(min-width: 1100px){
+	.categoryTile{
+		width: 180px;
+
+		height: 180px;
+
+}}

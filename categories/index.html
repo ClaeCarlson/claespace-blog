@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Categories</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Galada|Roboto|Press+Start+2P" rel="stylesheet">
+	<link rel="icon" href="../cs.png">
+	<link rel="stylesheet" type="text/css" href="../main.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="../blog.js"></script>
+	<script type="text/javascript">
+		
+		
+		function getCategories(){
+
+			$.ajax({
+                url: '../php/getCategoryTiles.php',
+                success: function(data) {
+                    $("#tileContent").html(data);
+                }
+            });
+
+
+
+		}
+
+		window.onload = function(){
+			//getBackground();
+
+			// Remove to make thumb imgs semi-transparent
+
+			var header = document.getElementById("header");
+			//header.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+			header.style.backgroundImage = "url('../thumbs/tp_back.png')";
+
+			getCategories();	
+		}
+
+		function goToCategory(cat){
+			window.location = "../#cat-" + cat;
+		}
+
+		
+	</script>
+</head>
+<body>
+	<img id="background" crossorigin="" src="https://source.unsplash.com/featured/?nature">
+	<div id="header" class="categoryheader">
+		<div id="headeritems">
+            <img class="icon" src="../csicon_cut.png" onclick="history.go(0)">
+        <!--<span id="headerText">ClaeSpace</span>!-->
+        	<p id="blog">ClaeSpace • Blog</p>
+        	<hr style="width: 80%">
+        	<p id="menu"><span class="menuitem">Projects</span> • <span class="menuitem">About</span> • <span onclick="showdropdown()" class="menuitem">Archive
+            <div id="archivedropdown" class="dropdown-content">
+                <a href="../">All posts</a>
+                <a href="">Browse by category</a>
+                <a href="#">Browse by date</a>
+                
+            </div></span></p>
+
+        </div>
+        <div id="tileContent"></div>
+
+
+<div id="nav" style="display: none;"></div>
+	<div id="footer" style="display: none;"></div>
+	</div>
+	
+
+	
+
+</body>
+</html>

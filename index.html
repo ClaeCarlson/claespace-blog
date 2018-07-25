@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ClaeSpace</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Galada|Roboto|Press+Start+2P" rel="stylesheet">
+	<link rel="icon" href="cs.png">
+	<link rel="stylesheet" type="text/css" href="main.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="blog.js"></script>
+    <script type="text/javascript">
+        home = 1;
+        $(document).ready(function(){
+
+            getBackground();
+           
+
+            if (document.URL.indexOf('#cat') != -1) {
+                var selectedcat = document.URL.split('-')[1];
+                categories(selectedcat);
+    }
+
+        });
+    </script>
+</head>
+<body>
+    <div id="nav">
+        <img class="icon navicon" src="csicon_cut.png" onclick="history.go(0)">
+        <span class="navitem">Projects</span>
+        <span class="navitem">About</span>
+        <span class="navitem">Archive</span>
+        <span class="navitem" id="createpost" style="float: right; margin-right: 20px">New post</span>
+    </div>
+
+	<!--<img id="background" src="bgs/autumn.jpg">!-->
+    <img id="background" crossorigin="" src="https://source.unsplash.com/featured/?nature">
+	<div id="header" class="header">
+        <div id="headeritems">
+            <img class="icon" src="csicon_cut.png" onclick="history.go(0)">
+        <!--<span id="headerText">ClaeSpace</span>!-->
+        <p id="blog">ClaeSpace • Blog</p>
+        <hr style="width: 80%">
+        <p id="menu"><span class="menuitem">Projects</span> • <span class="menuitem">About
+            
+        </span> • <span onclick="showdropdown()" class="menuitem">Archive
+            <div id="archivedropdown" class="dropdown-content">
+                <a href="">All posts</a>
+                <a href="./categories">Browse by category</a>
+                <a href="#">Browse by date</a>
+                
+            </div></span></p>
+        </div>
+        
+	</div>
+
+    
+    <div id="container">
+	<div id="content">
+    
+
+        <!--
+        <div id="right">
+            <div id="side">Browse posts by category</div>
+        </div>-->
+
+        
+
+
+        <div class="post" onclick="fullPost(this)">
+
+            <div class="imgframe">
+            <img class="img" src="https://prettymuchamazing.com/.image/t_share/MTM3NjY0ODE2MTM4NDMwMTEw/sufjan-stevensjpg.jpg">
+            </div>
+            
+            <!-- Title max 32 char-->
+
+
+            <h2 class="title">Part 2: Sufjan Stevens visits me in a dream</h2><span class="cat" onclick="categories(this.innerText)">Thoughts</span><span class="time">2:53pm - 07.18.18</span>
+            <span class="comments">0 Comments</span>
+            <span class="postbody">
+            I saw Sufjan Stevens at a grocery store in Brooklyn yesterday. I told him how cool it was to meet him in person, but I didn't want to be a douche and bother him and ask him for photos or anything.
+
+		He said, "Oh, like you're doing now?"
+
+		I was taken aback, and all I could say was "Huh?" but he kept cutting me off and going "huh? huh? huh?" and closing his hand shut in front of my face. I walked away and continued with my shopping, and I heard him chuckle as I walked off. When I came to pay for my stuff up front I saw him trying to walk out the doors with like fifteen banjos in his hands without paying.
+
+		The girl at the counter was very nice about it and professional, and was like "Sir, you need to pay for those first." At first he kept pretending to be tired and not hear her, but eventually turned back around and brought them to the counter.
+
+	When she took one of the bars and started scanning it multiple times, he stopped her and told her to scan them each individually "to prevent any electrical infetterence," and then turned around and winked at me. I don't even think that's a word. After she scanned each bar and put them in a bag and started to say the price, he kept interrupting her by yawning really loudly.
+
+
+</span>
+<span class="video"></span>
+    <span class='defimg'>0</span>
+          
+    </div>
+
+    <hr>
+
+
+    
+
+</div>
+
+<div id="footer">
+    <div id="prev">Prev</div>
+    <span id="pagenum">Page 0</span>
+    <div id="adv">Next</div>
+</div>
+
+</div>
+
+
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" id="closenew">&times;</span>
+    <form action="php/createPost.php" method="post" enctype="multipart/form-data">
+            <textarea type="text" name="title" id="title" placeholder="Title" required="required"></textarea>
+            <select name="category" id="category" required="required">
+                <option value="" disabled selected hidden>Category</option>
+            </select>
+            <br>
+            <textarea name="body" placeholder="Text..." id="body"></textarea><br>
+            <input type="file" name="file" id="file" ><br>
+            <input type="text" name="video">
+            <input type="submit" name="submit" id="submit" value="Submit">
+
+
+        </form>
+  </div>
+
+  <div class="fullpost">
+    <span class="close" id="closefull">&times;</span>
+    <span id="fulltitle"></span>
+    <div id="cattime">
+    <span id="fullcat"></span>
+    •
+    <span id="fulltime"></span>
+    </div>
+    <img id="fullimg" src="">
+    <div id="videocontainer"></div>
+    <div id="fullbody"></div>
+
+
+    
+
+      
+  </div>
+
+</div>
+	
+
+
+</body>
+</html>
