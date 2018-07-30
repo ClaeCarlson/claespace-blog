@@ -33,7 +33,8 @@
 
 			var header = document.getElementById("header");
 			//header.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-			header.style.backgroundImage = "url('../thumbs/tp_back.png')";
+			//header.style.backgroundImage = "url('../thumbs/tp_back.png')";
+			//header.style.backgroundRepeat = "repeat";
 
 			getCategories();	
 		}
@@ -46,7 +47,8 @@
 	</script>
 </head>
 <body>
-	<img id="background" crossorigin="" src="https://source.unsplash.com/featured/?nature">
+	<img id="background" class="background" crossorigin="" src="https://source.unsplash.com/featured/?nature">
+	<img class="background" src="../thumbs/tp_back.png">
 	<div id="header" class="categoryheader">
 		<div id="headeritems">
             <img class="icon" src="../csicon_cut.png" onclick="history.go(0)">

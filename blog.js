@@ -7,13 +7,25 @@
 
         $(document).ready(function(){
 
+            $("#register").mouseover(function(){
+                $("#register").text("Jk sign up :)");
+            })
+            .mouseout(function(){
+                $("#register").text("Fuck you");
+            });
+
+            
+
             $("body").click(function(e){
                 var container = $("#menu");
-                if (!container.is(e.target) && container.has(e.target).length === 0) {
+                var container2 = $("#loginform");
+                if (!container.is(e.target) && container.has(e.target).length === 0 && !container2.is(e.target) && container2.has(e.target).length === 0) {
                     $("#archivedropdown").css("display","none");
+                    $("#logindropdown").css("display","none");
                 }
                 
             });
+
 
         	if (home) {
 
@@ -101,8 +113,18 @@
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function showdropdown() {
-    //document.getElementById("archivedropdown").classList.toggle("show");
+    document.getElementById("logindropdown").style.display = "none";
     document.getElementById("archivedropdown").style.display = "block";
+}
+
+function showlogin() {
+    document.getElementById("archivedropdown").style.display = "none";
+    document.getElementById("logindropdown").style.display = "block";
+}
+
+function showsignup() {
+    document.getElementById("myModal").style.display = "block";
+    document.getElementById("signup").style.display = "block";
 }
 
 // Close the dropdown menu if the user clicks outside of it
@@ -152,6 +174,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
         fullpost.style.display = "none";
         newpost.style.display = "none";
+        document.getElementById("signup").style.display = "none";
     }
 }
 
@@ -302,5 +325,4 @@ window.onclick = function(event) {
     function allposts(){
     	window.location = "";
     }
-
 

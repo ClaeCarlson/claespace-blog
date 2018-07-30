@@ -19,7 +19,7 @@ body, html {
 	width: 50vh;
 	text-align: center;
 	padding-bottom: 0px;
-	margin-bottom: 0px;
+	margin-bottom: 40px;
 
 }
 
@@ -37,15 +37,40 @@ body, html {
       text-shadow: 1px 0px 20px white;
 }
 
+#reddit {
+	color: white;
+	width: 50%;
+	margin: 0 auto;
+	padding: 20px;
+	border: solid 1px white;
+
+}
+#til {
+	text-align: center;
+	font-size: 18px;
+}
+#redditlinks {
+	text-align: center;
+}
+#reddit h3{
+	font-size: 16px;
+}
+#reddit a{
+	padding: 10px;
+	color: orange;
+}
+
 /* The container <div> - needed to position the dropdown content */
 
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
+
 	width: 240px;
 	left: 0;
 	right: 0;
 	margin: auto;
+	margin-top: 20px;
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -139,7 +164,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
       text-shadow: 1px 0px 20px white;
 }
 
-#background {
+.background {
 	/* Set rules to fill background */
   min-height: 100%;
   min-width: 1024px;
@@ -154,14 +179,71 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
   left: 0;
 }
 
-#signin {
-	font-size: 20px;
-	margin-top: 40px;
-	font-family: 'Roboto';
-	float: right;
-	margin-right: 10px;
+#logindropdown {
+	padding: 10px;
+}
+
+#logindropdown input{
+	width: 90%;
+
+}
+
+#register {
+	text-decoration: underline;
+	color: #4f88a3;
+	cursor: pointer;
+}
+
+#signup {
+	display: none;
+	background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 40px;
+    width: 60%;
+    overflow: auto;
+    color: grey;
+    border-radius: 2px;
+}
+#signup img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: block;
+	margin: auto;
+
+}
+#signup h2 {
+	text-align: center;
+}
+#signup textarea {
+	line-height: 30px;
+	padding: 5px;
+	width: 100%;
+	margin: 0 auto;
+	height: 30px;
+	border-radius: 2px;
+	resize: none;
+	border: 2px solid lightgrey;
+}
+#profupload{
+	width: 60px;
+	height: 30px;
+	background-color: orange;
+	padding: 5px;
+	border-radius: 2px;
 	color: white;
 	cursor: pointer;
+}
+#signupsubmit{
+	font-size: 16px;
+	height: 40px;
+	width: 80px;
+	background-color: #4f88a3;
+	color: white;
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 2px;
+	float: right;
 }
 
 #signshow {
@@ -228,7 +310,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     width: 90%; /* Could be more or less, depending on screen size */
-    height: 60%;
+    height: 70%;
     overflow: auto;
     color: grey;
     
@@ -281,19 +363,79 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 #fulltime {
 	padding-left: 5px;
 	margin-right: 20px;
-
 }
 #fullimg {
 	max-height: 80%;
 	max-width: 100%;
 	display: block;
 	margin: auto;
-
 }
 #fullbody{
 	font-size: 15px;
 	padding: 10px;
+}
+.comment {
+	min-height: 90px;
+	width: 100%;
+	border: 2px solid lightgrey;
+	border-radius: 2px;
+	margin-top: 10px;
+}
+.commentpicframe{
+	padding: 16px;
+	float: left;
+	height: 60px;
+	width: 60px;
+	overflow: hidden;
+}
+.commentpic{
+	max-height: 60px;
+	width: auto;
+	top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+	margin: auto;
+}
+.commenttext{
+	padding: 10px;
+}
+.commentauthor{
+	padding: 10px 10px 0px 0px;
+	color: #4f88a3;
+	display: inline-block;
+}
+.commenttime{
+	font-size: 10px;
+	float: right;
+	padding: 10px;
+	padding-top: 14px;
+}
+#fullcomments {
+	margin-bottom: 20px;
+	
+}
+#addcomment {
+	width: 100%;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-top: 20px;
 
+}
+#commentbox {
+	border: 1px solid lightgrey;
+	padding: 10px;
+	resize: none;
+	width: 97%;
+	height: 100px;
+}
+#submitcomment {
+	float: right;
+	width: 60px;
+	background-color: orange;
+	color: white;
+	text-align: center;
+	padding: 10px;
 }
 
 #videocontainer {
@@ -348,6 +490,12 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	width: 100%;
 	height: 200px;
 }
+#video {
+	width: 40%;
+	display: inline-block;
+	float: left;
+	margin-right: 20px;
+}
 #submit {
 	float: right;
 }
@@ -365,6 +513,26 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+#newpost {
+	padding: 10px;
+	height: 60px;
+	width: 100%;
+	padding-bottom: 20px;
+}
+#createpost{
+	cursor: pointer;
+	text-align: center;
+	display: block;
+	width: 100px;
+	padding: 20px;
+	color: white;
+	border-radius: 2px;
+	margin: auto;
+	background-color: #4f88a3;
+}
+#createpost:hover{
+	background-color: #3f6e84;
 }
 
 .post{
@@ -509,9 +677,9 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 .categoryheader {
 	font-family: 'Open Sans', sans-serif;
 	z-index: 2;
-	opacity: 0.8;
+	opacity: 0.95;
 	width: 100%;
-	height: 100%;
+	padding-bottom: 30px;
 	margin: 0px;
 }
 
@@ -562,6 +730,9 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 
 }
 @media(min-width: 680px){
+	.categoryheader {
+		height: 100vh;
+}
 	.categoryTile{
 		width: 150px;
 
@@ -571,6 +742,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 @media(min-width: 1100px){
 	.categoryTile{
 		width: 180px;
+		padding: 20px;
 
 		height: 180px;
 
