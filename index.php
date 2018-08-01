@@ -5,13 +5,14 @@ session_start();
 if (!isset($_SESSION['username'])) {
     $_SESSION['username'] = "";
     $_SESSION['admin'] = 0;
+    $_SESSION['user_id'] = "";
     }
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ClaeSpace</title>
+    <title>ClaeSpace Blog</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Galada|Roboto|Press+Start+2P" rel="stylesheet">
@@ -51,17 +52,43 @@ if (!isset($_SESSION['username'])) {
     </script>
 </head>
 <body>
+    <span id="user_id" style="display: none;"><?php echo $_SESSION['user_id']; ?></span>
 
     <div id="nav">
         <img class="icon navicon" src="csicon_cut.png" onclick="history.go(0)">
-        <span class="navitem">Projects</span>
+        <span class="navitem" onclick="window.location = './projects'">Projects</span>
         <span class="navitem">About</span>
-        <span class="navitem">Archive</span>
-        <span class="navitem" style="float: right; margin-right: 20px">Log in</span>
+        <span class="navitem" id="navarchive">Archive</span>
+        <span class="archsecondary" onclick="window.location = ''">All posts</span>
+        <span class="archsecondary" onclick="window.location = './categories'">Categories</span>
+        <span class="archsecondary">By date</span>
+        <span class="archsecondary" id="archiveback" style="float: right; margin-right: 20px"><i class="fas fa-arrow-left"></i></span>
+        <?php
+            if ($_SESSION['username'] != "") {
+                echo '<span onclick="logout()" class="navitem" style="float: right; margin-right: 20px">Log out</span>'; 
+            }
+            else
+                echo '<span id="navlogin" class="navitem" style="float: right; margin-right: 20px">Log in</span>
+                <div class="loginsecondary">
+                    <form style="display: inline-block" method="post" action="php/login.php" >
+                    <input placeholder="User" type="text" name="user" required>
+                    <input placeholder="Pass" type="password" name="pass" required>
+                    <input style="width: 60px" type="submit" name="" onclick="login()">
+                    </form>
+                    <button onclick="showsignup()" formnovalidate>Register</button>
+                    <span id="loginback" style="float: right; margin-right: 20px"><i class="fas fa-arrow-left"></i></span>
+                </div>';
+        ?>
+        
     </div>
 
-    <!--<img id="background" src="bgs/autumn.jpg">!-->
-    <img class="background" id="background" crossorigin="" src="https://source.unsplash.com/featured/?nature">
+    <!--<img id="background" src="bgs/autumn.jpg">
+
+        https://source.unsplash.com/featured/?autumn,nature
+
+        !-->
+
+    <img class="background" id="background" crossorigin="" src="https://source.unsplash.com/featured/?autumn">
     <div id="header" class="header">
         <div id="headeritems">
             <img class="icon" src="csicon_cut.png" onclick="history.go(0)">
@@ -69,7 +96,7 @@ if (!isset($_SESSION['username'])) {
         <p id="blog">ClaeSpace • Blog</p>
         <hr style="width: 80%">
         <p id="menu">
-            <span class="menuitem">Projects</span> • 
+            <span class="menuitem" onclick="window.location='./projects'">Projects</span> • 
             <span class="menuitem">About</span> • 
             <span onclick="showdropdown()" class="menuitem">Archive</span> • 
                 <span id="archivedropdown" class="dropdown-content">
@@ -94,7 +121,7 @@ if (!isset($_SESSION['username'])) {
                     <input placeholder="Pass" type="password" name="pass" required>
                     <input type="submit" name="" onclick="login()">
                     <span style="color: black; font-size: 12px;">Don't have an account? <span id="register" onclick="showsignup()">Fuck you</span></span>
-                </form>
+                    </form>
 
                 </div>
         </p>
@@ -116,12 +143,13 @@ if (!isset($_SESSION['username'])) {
 
         <?php 
             if ($_SESSION['admin'] == 1)
-                echo '<div id="newpost"><div id="createpost">New Post</div></div>';
+                echo '<div id="newpost"><div id="newpostbtn" onclick="createpost()">New Post</div></div>';
         ?>
         
 
 
         <div class="post" onclick="fullPost(this)">
+            <span class='post_id' style='display: none' id='post_id'>0</span>
 
             <div class="imgframe">
             <img class="img" src="https://prettymuchamazing.com/.image/t_share/MTM3NjY0ODE2MTM4NDMwMTEw/sufjan-stevensjpg.jpg">
@@ -191,6 +219,7 @@ if (!isset($_SESSION['username'])) {
 
   <div class="fullpost">
     <span class="close" id="closefull">&times;</span>
+    <span style="display: none" id="fullid"></span>
     <span id="fulltitle"></span>
     <div id="cattime">
     <span id="fullcat"></span>
@@ -201,32 +230,15 @@ if (!isset($_SESSION['username'])) {
     <div id="videocontainer"></div>
     <div id="fullbody"></div>
     <div id="fullcomments">
-    2 Comments
-        <div class="comment">
-            <div class="commentpicframe">
-            <img class="commentpic" src="thumbs/portrait.png">
-            </div>
-            <div class="commentauthor">Crispy Cringus</div>
-            <span class="commenttime">12:12pm - 07.27.18</span>
-            <div class="commenttext">This is very funny, good job</div>
-        </div>
-        <div class="comment">
-            <div class="commentpicframe">
-            <img class="commentpic" src="thumbs/portrait.png">
-            </div>
-            <div class="commentauthor">John Wilkes Booth</div>
-            <span class="commenttime">12:20pm - 07.27.18</span>
-            <div class="commenttext">Lol yeah</div>
-        </div>
+    <!-- Comments go here-->
     </div>
     <?php 
         if ($_SESSION['username'] != "") {
 
-            echo "Comment as <span style='color: #4f88a3'>" . $_SESSION['username'] . "</span><div id='addcomment'>
-        
-    <textarea id='commentbox' placeholder='Comment...'></textarea>
-    <div id='submitcomment'>Post</div>
-    </div>";
+            echo "Comment as <span id='user' style='color: #4f88a3'>" . $_SESSION['username'] . "</span><div id='addcomment'>
+                <textarea id='commentbox' placeholder='Comment...' name='comment'></textarea>
+                <div id='submitcomment'>Post</div>
+                </div>";
 
         }
         else {
@@ -241,18 +253,17 @@ if (!isset($_SESSION['username'])) {
   <div id="signup">
     <img src="thumbs/portrait.png">
         <h2>Sign up</h2>
-        <form action="php/register.php" method="post" enctype="multipart/form-data">
-            <div>Username:</div>
-            <textarea type="text" name="username" required></textarea><br>
-            <div>Password</div>
-            <textarea style="-webkit-text-security : disc" type="password" name="pass" required></textarea><br>
-            <div>Confirm Password</div>
-            <textarea style="-webkit-text-security : disc" type="password" name="pass2" required></textarea><br>
+        <span id="regerror">Passwords don't match!</span>
+        <form id="signupform" action="php/register.php" method="post" enctype="multipart/form-data">
+            <textarea id="username" style="font-size: 16px" type="text" name="username" placeholder="Username" required></textarea><br>
+            <textarea id="regpass1" style="-webkit-text-security : disc; font-size: 16px" placeholder="Password" type="password" name="pass" required></textarea><br>
+            <textarea id="regpass2" style="-webkit-text-security : disc; font-size: 16px" placeholder="Confirm Password" type="password" name="pass2" required></textarea><br>
             <div style="margin-bottom: 10px">(Optional) Profile Picture</div>
             <label id="profupload" for="profpic">
             <input style="display: none" id="profpic" type="file" name="file">
             <i class="far fa-file-image"></i> Choose Img
-            </label><br>
+            </label>
+            <span style="padding-left: 5px" id="selectedfile"></span><br>
             <input id="signupsubmit" type="submit" name="">
 
         </form>

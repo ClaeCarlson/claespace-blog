@@ -7,11 +7,86 @@
 
         $(document).ready(function(){
 
+            $("#submitcomment").click(function(){
+
+                var comment = $("#commentbox").val();
+                $("#commentbox").val("");
+
+                if (comment != "") {
+
+                    var user = $("#user_id").text();
+                    var post_id = $("#fullid").text();
+
+                    var postData = "user=" + user + "&comment=" + comment + "&post_id=" + post_id;
+
+                    $.ajax({
+                    url: 'php/createComment.php',
+                    type: "POST",
+                    data: postData,
+                    success: function(data) {
+                    //alert(data);
+                        postData = "post_id=" + post_id;
+                        ajaxComments(postData);
+                    }
+                    });
+                }
+            });
+
+            $("#navarchive").click(function(){
+                $(".archsecondary").toggle();
+                $(".navitem").toggle();
+            });
+
+            $("#archiveback").click(function(){
+                $(".archsecondary").toggle();
+                $(".navitem").toggle();
+            });
+
+            $("#navlogin").click(function(){
+                $(".loginsecondary").toggle();
+                $(".navitem").toggle();
+            });
+            $("#loginback").click(function(){
+                $(".loginsecondary").toggle();
+                $(".navitem").toggle();
+            });
+
+
+            $("#signupform").submit(function(e){
+                if ($("#regpass1").val() == $("#regpass2").val())
+                    return;
+
+                else {
+                    $("#regerror").css("visibility", "visible");
+                    e.preventDefault();
+                }
+            });
+
+            $("#username").keypress(function(e){
+                if(!/[0-9a-zA-Z-_]/.test(String.fromCharCode(e.which)))
+                    return false;
+            });
+            $("#regpass1").keypress(function(e){
+                if(!/[0-9a-zA-Z-_]/.test(String.fromCharCode(e.which)))
+                    return false;
+            });
+            $("#regpass2").keypress(function(e){
+                if(!/[0-9a-zA-Z-_]/.test(String.fromCharCode(e.which)))
+                    return false;
+            });
+
             $("#register").mouseover(function(){
                 $("#register").text("Jk sign up :)");
             })
             .mouseout(function(){
                 $("#register").text("Fuck you");
+            });
+
+            $("#profpic").change(function(){
+                var filename = $(this).val();
+                filename = filename.split('fakepath\\')[1];
+                //filename = filename.substring(filename.indexOf('fakepath\\'));
+                $("#selectedfile").text(filename);
             });
 
             
@@ -110,10 +185,21 @@
   }      
 }); 
 
+// When the user clicks on the button, open the modal 
+function createpost() {
+    var newpost = document.getElementsByClassName("modal-content")[0];
+    var modal = document.getElementById('myModal');
+
+    modal.style.display = "block";
+    newpost.style.display = "block";
+
+}
+
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function showdropdown() {
-    document.getElementById("logindropdown").style.display = "none";
+    if (document.getElementById("logindropdown"))
+        document.getElementById("logindropdown").style.display = "none";
     document.getElementById("archivedropdown").style.display = "block";
 }
 
@@ -147,15 +233,6 @@ var closefullpost = document.getElementById("closefull");
 var newpost = document.getElementsByClassName("modal-content")[0];
 var fullpost = document.getElementsByClassName("fullpost")[0];
 
-
-
-
-// When the user clicks on the button, open the modal 
-createpost.onclick = function() {
-    modal.style.display = "block";
-    newpost.style.display = "block";
-
-}
 
 // When the user clicks on <span> (x), close the modal
 closenewpost.onclick = function() {
@@ -262,6 +339,7 @@ window.onclick = function(event) {
         var body = el.getElementsByClassName("postbody")[0].innerText;
         var video = el.getElementsByClassName("video")[0].innerText;
         var defimg = el.getElementsByClassName("defimg")[0].innerText;
+        var post_id = el.getElementsByClassName("post_id")[0].innerText;
 
 
         if (defimg == "1"){
@@ -274,6 +352,7 @@ window.onclick = function(event) {
         document.getElementById("fulltime").innerText = time;
         document.getElementById("fullimg").src = img;
         document.getElementById("fullbody").innerText = body;
+        document.getElementById("fullid").innerText = post_id;
 
         if (video != "") {
 
@@ -295,11 +374,28 @@ window.onclick = function(event) {
         var fullpost = document.getElementsByClassName("fullpost")[0];
         fullpost.style.display = "block";
 
+        var post_id = el.getElementsByClassName("post_id")[0].innerText;
+        //alert(post_id);
 
+        var postData = "post_id=" + post_id;
 
+        
+        ajaxComments(postData);
 
+        
 
+    }
 
+    function ajaxComments(postData){
+
+        $.ajax({
+            url: 'php/getComments.php',
+            type: "POST",
+            data: postData,
+            success: function(data) {
+                $("#fullcomments").html(data);
+            }
+        });
     }
 
     function categories(cat){

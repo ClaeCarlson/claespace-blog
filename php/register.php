@@ -53,21 +53,27 @@ if ($uploadOk == 0) {
 }
 
 else {
-	insertPost($login, $pass, NULL, $mysqli);
+	insertPost($login, $pass, "", $mysqli);
 }
 
 function insertPost($l, $pass, $pic, $mysqli){
 
-	$sql = "INSERT INTO user (login, pass, pic) VALUES " . 
-	"('$l', '$pass', '$pic')";
+	$stmt = $mysqli->prepare("INSERT INTO user (login, pass, pic) VALUES " . 
+	"(?, ?, ?)");
+	$stmt->bind_param("sss", $l, $pass, $pic);
 
-	if ( $mysqli->query($sql) ){
+	
+
+	if ( $stmt->execute() ){
 		session_start();
 		$_SESSION['username'] = $l;
+
+		$_SESSION['user_id'] = $mysqli->insert_id;
+		$stmt->close();
 		echo '<script> window.location.replace("../") </script>';
 	}
 	else {
-		echo $mysqli->error;
+		echo $stmt->error;
 	}
 
 }

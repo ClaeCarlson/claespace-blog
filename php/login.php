@@ -5,7 +5,7 @@ require 'header.php';
 $user = $_POST["user"];
 $pass = $_POST["pass"];
 
-$sql = "SELECT login, pass, admin FROM user WHERE login = '$user'";
+$sql = "SELECT user_id, login, pass, admin FROM user WHERE login = '$user'";
 
 $result = $mysqli->query($sql);
 
@@ -18,6 +18,7 @@ if ($result->num_rows > 0) {
 		echo "yes";
 		session_start();
 		$_SESSION['username'] = $user;
+		$_SESSION['user_id'] = $result['user_id'];
 
 		if ( $result["admin"] == 1) {
 			$_SESSION['admin'] = 1;

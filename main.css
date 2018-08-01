@@ -16,7 +16,7 @@ body, html {
 #headeritems {
 	padding-top: 40px;
 	margin: 0 auto;
-	width: 50vh;
+	width: 60vh;
 	text-align: center;
 	padding-bottom: 0px;
 	margin-bottom: 40px;
@@ -97,7 +97,6 @@ body, html {
 	font-family: 'Open Sans', sans-serif;
 	z-index: 2;
 	opacity: 0.8;
-	background-color: white;
 	width: 100%;
 	height: 100vh;
 	margin: 0px;
@@ -163,6 +162,35 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
       -webkit-fill-color: #FFFFFF;
       text-shadow: 1px 0px 20px white;
 }
+.archsecondary {
+	color: white;
+	display: none;
+	line-height: 60px;
+	padding-left: 20px;
+}
+.archsecondary:hover {
+	cursor: pointer;
+	-webkit-stroke-width: 5.3px;
+      -webkit-stroke-color: #FFFFFF;
+      -webkit-fill-color: #FFFFFF;
+      text-shadow: 1px 0px 20px white;
+}
+.loginsecondary{
+	margin-top: 18px;
+	display: none;
+	margin-left: 60px;
+	color: white;
+}
+#loginback:hover {
+	cursor: pointer;
+	-webkit-stroke-width: 5.3px;
+      -webkit-stroke-color: #FFFFFF;
+      -webkit-fill-color: #FFFFFF;
+      text-shadow: 1px 0px 20px white;
+}
+.loginsecondary input{
+	width: 15vw;
+}
 
 .background {
 	/* Set rules to fill background */
@@ -194,10 +222,19 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	cursor: pointer;
 }
 
+#regerror {
+	display: block;
+	text-align: center;
+	width: 100%;
+	color: red;
+	font-size: 14px;
+	visibility: hidden;
+}
+
 #signup {
 	display: none;
 	background-color: #fefefe;
-    margin: 5% auto; /* 15% from the top and centered */
+    margin: 20% auto; /* 15% from the top and centered */
     padding: 40px;
     width: 60%;
     overflow: auto;
@@ -381,24 +418,35 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	border-radius: 2px;
 	margin-top: 10px;
 }
+.admincomment {
+	min-height: 90px;
+	width: 100%;
+	border: 2px solid #4f88a3;;
+	border-radius: 2px;
+	margin-top: 10px;
+}
+
+.commentpic{
+	border-radius: 2px;
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+}
+
 .commentpicframe{
+	position: relative;
 	padding: 16px;
 	float: left;
 	height: 60px;
 	width: 60px;
 	overflow: hidden;
 }
-.commentpic{
-	max-height: 60px;
-	width: auto;
-	top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-	margin: auto;
-}
+
 .commenttext{
+	margin-left: 80px;
+	word-break: break-word;
 	padding: 10px;
+	white-space: pre-wrap;
 }
 .commentauthor{
 	padding: 10px 10px 0px 0px;
@@ -423,6 +471,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 
 }
 #commentbox {
+	font-size: 14px;
 	border: 1px solid lightgrey;
 	padding: 10px;
 	resize: none;
@@ -436,6 +485,8 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	color: white;
 	text-align: center;
 	padding: 10px;
+	cursor: pointer;
+	border-radius: 2px;
 }
 
 #videocontainer {
@@ -515,12 +566,12 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
     cursor: pointer;
 }
 #newpost {
-	padding: 10px;
+	padding-top: 10px;
 	height: 60px;
 	width: 100%;
 	padding-bottom: 20px;
 }
-#createpost{
+#newpostbtn{
 	cursor: pointer;
 	text-align: center;
 	display: block;
@@ -531,7 +582,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	margin: auto;
 	background-color: #4f88a3;
 }
-#createpost:hover{
+#newpostbtn:hover{
 	background-color: #3f6e84;
 }
 
@@ -692,7 +743,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	
 	margin: 25px 25px auto;
 	width: 100px;
-	height: 80px;
+	height: 100px;
 	color: white;
 	text-align: center;
 }
@@ -706,12 +757,23 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
       -webkit-fill-color: #FFFFFF;
       text-shadow: 1px 0px 20px white;
 }
-@media(min-width: 510px){
-.categoryTile{
 
-	height: 100px;
+/** Projects page **/
 
-}}
+#projectscontent{
+	padding: 20px;
+	color: white;
+	text-align: center;
+}
+
+#projectscontent h2{
+	text-align: center;
+}
+
+
+
+/** Responsive **/
+
 @media(min-width: 650px){
 	
 #videocontainer {
@@ -730,20 +792,14 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 
 }
 @media(min-width: 680px){
-	.categoryheader {
-		height: 100vh;
-}
 	.categoryTile{
 		width: 150px;
 
-		height: 120px;
+		height: 150px;
 
 }}
 @media(min-width: 1100px){
 	.categoryTile{
-		width: 180px;
-		padding: 20px;
-
-		height: 180px;
+		margin: 5vw 5vw auto;
 
 }}

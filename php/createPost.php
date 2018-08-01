@@ -83,14 +83,14 @@ else {
 
 function insertPost($t, $c, $b, $i, $v, $mysqli){
 
-	$sql = "INSERT INTO post (title, category, create_time, body, img_id, video) VALUES " . 
-	"('$t', '$c', NOW(),'$b', '$i', '$v')";
+	$stmt = $mysqli->prepare("INSERT INTO post (title, category, create_time, body, img_id, video) VALUES " .
+		"(?, ?, NOW(), ?, ?, ?)");
+	$stmt->bind_param("sssis", $t, $c, $b, $i, $v);
 
-	if ( $mysqli->query($sql) ){
+	if ($stmt->execute()){
 		echo '<script> window.location.replace("../") </script>';
-	}
-	else {
-		echo $mysqli->error;
+	}else{
+		echo $stmt->error;
 	}
 
 }

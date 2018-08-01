@@ -5,7 +5,7 @@ require 'header.php';
 
 if (empty($_GET['category'])) {
 
-	$sql = "SELECT title, category, create_time, body, img_id, video FROM post ORDER BY post_id DESC";
+	$sql = "SELECT post_id, title, category, create_time, body, img_id, video FROM post ORDER BY post_id DESC";
 }
 else {
 
@@ -15,7 +15,7 @@ else {
 
 	
 
-	$sql = "SELECT title, category, create_time, body, img_id, video FROM post WHERE category='$category' ORDER BY post_id DESC";
+	$sql = "SELECT post_id, title, category, create_time, body, img_id, video FROM post WHERE category='$category' ORDER BY post_id DESC";
 }
 
 if (empty($_GET['page'])) {
@@ -65,6 +65,7 @@ else {
 		}
 
 
+		$post_id = $row['post_id'];
 		$title = $row['title'];
 		$cat = $row['category'];
 		$time = $row['create_time'];
@@ -127,6 +128,25 @@ else {
 
 		}
 
+
+		$sql = "SELECT * FROM comment WHERE post_id = '$post_id'";
+		$result = $mysqli->query($sql);
+
+		$numcomments = 0;
+
+		foreach ($result as $row) {
+
+			$numcomments++;
+
+		}
+
+		if ($numcomments == 1) {
+			$numcomments = "1 Comment";
+		}
+		else
+			$numcomments = (string)$numcomments . " Comments";
+
+
 		if ($hrcounter) {
 			echo "<hr>";
 		}
@@ -134,6 +154,7 @@ else {
 
 		echo"
 		<div class='post' onclick='fullPost(this)'>
+			<span class='post_id' style='display: none' id='post_id'>$post_id</span>
 
             <div class='imgframe'>
             <img class='img' src='$url'>
@@ -143,7 +164,7 @@ else {
             <h2 class='title'>$title</h2>
             <span class='cat' onclick='categories(this.innerText)'>$cat</span>
             <span class='time'>$time</span>
-            <span class='comments'>0 comments</span>
+            <span class='comments'>$numcomments</span>
             <span class='postbody'>$body</span>
             <span class='defimg'>$defimg</span>
             <span class='video'>$video</span>
