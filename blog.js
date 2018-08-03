@@ -7,6 +7,15 @@
 
         $(document).ready(function(){
 
+
+            $('.carousel').slick({
+                //setting-name: setting-value
+                nextArrow: '<div type="button" class="slick-next"><i class="fas fa-chevron-right"></i></div>',
+                prevArrow: '<div type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></div>'
+            });
+
+            
+
             $("#submitcomment").click(function(){
 
                 var comment = $("#commentbox").val();
@@ -243,6 +252,7 @@ closenewpost.onclick = function() {
 closefullpost.onclick = function() {
     modal.style.display = "none";
     fullpost.style.display = "none";
+    $(".carousel").slick("removeSlide", null, null, true);
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -250,6 +260,7 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
         fullpost.style.display = "none";
+        $(".carousel").slick("removeSlide", null, null, true);
         newpost.style.display = "none";
         document.getElementById("signup").style.display = "none";
     }
@@ -331,26 +342,38 @@ window.onclick = function(event) {
 
     function fullPost(el){
 
-
+        
         var title = el.getElementsByClassName("title")[0].innerText;
         var cat = el.getElementsByClassName("cat")[0].innerText;
         var time = el.getElementsByClassName("time")[0].innerText;
-        var img = el.getElementsByClassName("img")[0].src;
+        if (el.getElementsByClassName("singleimg")[0])
+            var img = el.getElementsByClassName("singleimg")[0].innerText;
+        
         var body = el.getElementsByClassName("postbody")[0].innerText;
         var video = el.getElementsByClassName("video")[0].innerText;
         var defimg = el.getElementsByClassName("defimg")[0].innerText;
         var post_id = el.getElementsByClassName("post_id")[0].innerText;
+
+        var postimages = el.getElementsByClassName("postimages");
+
+        [].forEach.call(postimages, function (el) {
+
+            var postimg = el.innerText;
+            $(".carousel").slick("slickAdd", "<div><img class='fullimg' src=" + postimg + "></div>");
+
+        });
+        $('.carousel').slick('slickGoTo', 0);
 
 
         if (defimg == "1"){
             img = "";
         }
 
+        document.getElementById("fullimg").src = img;
 
         document.getElementById("fulltitle").innerText = title;
         document.getElementById("fullcat").innerText = cat;
-        document.getElementById("fulltime").innerText = time;
-        document.getElementById("fullimg").src = img;
+        document.getElementById("fulltime").innerText = time;      
         document.getElementById("fullbody").innerText = body;
         document.getElementById("fullid").innerText = post_id;
 

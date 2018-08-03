@@ -5,7 +5,7 @@ require 'header.php';
 
 if (empty($_GET['category'])) {
 
-	$sql = "SELECT post_id, title, category, create_time, body, img_id, video FROM post ORDER BY post_id DESC";
+	$sql = "SELECT post_id, title, category, create_time, body, has_img, video FROM post ORDER BY post_id DESC";
 }
 else {
 
@@ -15,7 +15,7 @@ else {
 
 	
 
-	$sql = "SELECT post_id, title, category, create_time, body, img_id, video FROM post WHERE category='$category' ORDER BY post_id DESC";
+	$sql = "SELECT post_id, title, category, create_time, body, has_img, video FROM post WHERE category='$category' ORDER BY post_id DESC";
 }
 
 if (empty($_GET['page'])) {
@@ -70,7 +70,7 @@ else {
 		$cat = $row['category'];
 		$time = $row['create_time'];
 		$body = $row['body'];
-		$img_id = $row['img_id'];
+		$has_img = $row['has_img'];
 		$video = $row['video'];
 		$defimg = "0";
 
@@ -79,49 +79,61 @@ else {
 		$time = $time->format('g:ia \- m.d.y');
 		//http://www.php.net/manual/en/function.date.php for examples
 
-		if ($img_id != 0){
+		if ($has_img){
 
-			$sql = "SELECT url FROM img WHERE img_id='$img_id'";
+			$sql = "SELECT url FROM img WHERE post_id='$post_id'";
 			$result = $mysqli->query($sql);
-			if ($result->num_rows > 0) {
-				$result = $result->fetch_assoc();
+			$first = $result->fetch_assoc();
 
-				$url = $result['url'];
+			$thumb_img = $first['url'];
+
+			if ($result->num_rows > 1) {
+
+			$images = "<span class='singleimg'></span>";
+			foreach($result as $row){
+				$url = $row['url'];
+				$images = $images .  "<span class='postimages'>$url</span>";
+			}
+
+			}
+			else {
+				$images = "<span class='singleimg'>$thumb_img</span>";
 			}
 		}
 		else if ($video != "") {
-			$url = "http://img.youtube.com/vi/" . $video . "/hqdefault.jpg";
+			$images = "";
+			$thumb_img = "http://img.youtube.com/vi/" . $video . "/hqdefault.jpg";
 			$defimg = "1";
 		}
 		else{
 
 			switch ($cat){
 				case "Thoughts":
-					$url = "thumbs/thoughts.png";
+					$thumb_img = "thumbs/thoughts.png";
 					break;
 				case "Books":
-					$url = "thumbs/books.png";
+					$thumb_img = "thumbs/books.png";
 					break;
 				case "Memes":
-					$url = "thumbs/memes.png";
+					$thumb_img = "thumbs/memes.png";
 					break;
 				case "Videos":
-					$url = "thumbs/videos.png";
+					$thumb_img = "thumbs/videos.png";
 					break;
 				case "Pics":
-					$url = "thumbs/pics.png";
+					$thumb_img = "thumbs/pics.png";
 					break;
 				case "Music":
-					$url = "thumbs/music.png";
+					$thumb_img = "thumbs/music.png";
 					break;
 				case "Art":
-					$url = "thumbs/art.png";
+					$thumb_img = "thumbs/art.png";
 					break;
 				case "TIL":
-					$url = "thumbs/til.png";
+					$thumb_img = "thumbs/til.png";
 					break;
 				default:
-					$url = "thumbs/default.png";
+					$thumb_img = "thumbs/default.png";
 			}
 
 			$defimg = "1";
@@ -157,7 +169,7 @@ else {
 			<span class='post_id' style='display: none' id='post_id'>$post_id</span>
 
             <div class='imgframe'>
-            <img class='img' src='$url'>
+            <img class='img' src='$thumb_img'>
             </div>
             
             <!-- Title max ? char-->
@@ -167,6 +179,7 @@ else {
             <span class='comments'>$numcomments</span>
             <span class='postbody'>$body</span>
             <span class='defimg'>$defimg</span>
+            $images
             <span class='video'>$video</span>
 
             </div>";

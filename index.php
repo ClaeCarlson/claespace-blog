@@ -18,7 +18,9 @@ if (!isset($_SESSION['username'])) {
     <link href="https://fonts.googleapis.com/css?family=Galada|Roboto|Press+Start+2P" rel="stylesheet">
     <link rel="icon" href="cs.png">
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
     <script src="blog.js"></script>
     <script type="text/javascript">
         
@@ -97,7 +99,7 @@ if (!isset($_SESSION['username'])) {
         <hr style="width: 80%">
         <p id="menu">
             <span class="menuitem" onclick="window.location='./projects'">Projects</span> • 
-            <span class="menuitem">About</span> • 
+            <span class="menuitem" onclick="window.location='./about'">About</span> • 
             <span onclick="showdropdown()" class="menuitem">Archive</span> • 
                 <span id="archivedropdown" class="dropdown-content">
                     <a href="">All posts</a>
@@ -210,7 +212,7 @@ if (!isset($_SESSION['username'])) {
             <br>
             <textarea name="body" placeholder="Text..." id="body"></textarea><br>
             <textarea type="text" name="video" id="video" placeholder="Youtube url"></textarea>
-            <input type="file" name="file" id="file" ><br>
+            <input type="file" name="file[]" id="file" multiple><br>
             <input type="submit" name="submit" id="submit" value="Submit">
 
 
@@ -226,7 +228,13 @@ if (!isset($_SESSION['username'])) {
     •
     <span id="fulltime"></span>
     </div>
-    <img id="fullimg" src="">
+    <img id="fullimg">
+
+    <div id="arrows"></div>
+    <div class="carousel">
+    
+        
+    </div>
     <div id="videocontainer"></div>
     <div id="fullbody"></div>
     <div id="fullcomments">

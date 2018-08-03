@@ -16,7 +16,7 @@ body, html {
 #headeritems {
 	padding-top: 40px;
 	margin: 0 auto;
-	width: 60vh;
+	width: 55vh;
 	text-align: center;
 	padding-bottom: 0px;
 	margin-bottom: 40px;
@@ -107,7 +107,7 @@ body, html {
 	display: inline-block;
 	font-family: 'Pacifico', cursive;
 	color: white;
-	font-size: 30px;
+	font-size: 5vh;
 	padding-left: 10px;
 	padding-top: 20px;
 	margin-top: -60px !important;
@@ -402,8 +402,13 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	margin-right: 20px;
 }
 #fullimg {
-	max-height: 80%;
+	max-height: 50vh;
 	max-width: 100%;
+	display: block;
+	margin: auto;
+}
+.fullimg {
+	max-height: 80%;
 	display: block;
 	margin: auto;
 }
@@ -621,8 +626,17 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	height: 120px;
 	width: 120px;
 	overflow: hidden;
+
 }
 .img{
+	border-radius: 5px;
+	background: 
+		linear-gradient(
+			rgba(0, 0, 0, 0.75),
+			rgba(0, 0, 0, 0.75)
+		),
+		url(https://source.unsplash.com/featured/?autumn);
+	background-attachment: fixed;
 	position: absolute;
 	max-height: 120px;
 	width: auto;
@@ -632,7 +646,13 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
     right: -9999px;
 	margin: auto;
 }
+.singleimg{
+	display: none;
+}
 .defimg {
+	display: none;
+}
+.postimages{
 	display: none;
 }
 

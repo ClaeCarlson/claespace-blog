@@ -25,57 +25,74 @@ if ($video != "") {
 
 $uploadOk = 1;
 $targetDir = '../imgs/';
-$fileName = basename($_FILES['file']['name']);
-$fileUrl = 'imgs/' . $fileName;
-$targetFile = $targetDir . basename($_FILES['file']['name']);
-$imageFileType = strtolower(pathinfo($targetFile,PATHINFO_EXTENSION));
+$fileName = basename($_FILES['file']['name'][0]);
 
 //echo $targetFile;
 
 if ($fileName != "") {
 
+insertPost($title, $cat, $body, 1, $video, $mysqli);
+$result = $mysqli->query("SELECT LAST_INSERT_ID() as id") or die($mysqli->error);
+$result = $result->fetch_assoc();
+$post_id = $result['id'];
+
+/*
 if ($_FILES["file"]["size"] > 5000000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
-}
+}*/
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
-} else {
+}
+else {
+	$count = 0;
+	foreach($_FILES['file']['name'] as $file) {
+		
+		echo "upload\n";
+		$tmp_name = $_FILES['file']['tmp_name'][$count];
+		$fileName = basename($_FILES['file']['name'][$count]);
 
-    if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
-        //echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
+		$fileUrl = 'imgs/' . $fileName;
+		$targetFile = ($targetDir . $fileName);
 
+		$count++;
 
-    	$sql = "INSERT INTO img (name, url) VALUES ('$fileName', '$fileUrl')";
+		//echo $targetFile;
 
-		if ( $mysqli->query($sql) ){
-			$result = $mysqli->query("SELECT LAST_INSERT_ID() as id") or die($mysqli->error);
-			$result = $result->fetch_assoc();
+		$moved = move_uploaded_file($tmp_name, $targetFile);
 
+		if($moved){
+			$sql = "INSERT INTO img (post_id, name, url) VALUES ('$post_id', '$fileName', '$fileUrl')";
 
-			$imgId = $result['id'];
-
-			insertPost($title, $cat, $body, $imgId, $video, $mysqli);
+			if ( $mysqli->query($sql) ){
 
 			}
-		else {
-			echo $mysqli->error;
+			else {
+				echo $mysqli->error;
+			}
 		}
 
+		else {
+			echo "Error: " . $file["error"];
+		}
+
+	}
+
+	echo '<script> window.location.replace("../") </script>';
 
 
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
-}
+
+
+} 
 
 }
 
 else {
-	insertPost($title, $cat, $body, null, $video, $mysqli);
+	insertPost($title, $cat, $body, 0, $video, $mysqli);
+	echo '<script> window.location.replace("../") </script>';
 }
 
 
@@ -83,12 +100,12 @@ else {
 
 function insertPost($t, $c, $b, $i, $v, $mysqli){
 
-	$stmt = $mysqli->prepare("INSERT INTO post (title, category, create_time, body, img_id, video) VALUES " .
+	$stmt = $mysqli->prepare("INSERT INTO post (title, category, create_time, body, has_img, video) VALUES " .
 		"(?, ?, NOW(), ?, ?, ?)");
 	$stmt->bind_param("sssis", $t, $c, $b, $i, $v);
 
 	if ($stmt->execute()){
-		echo '<script> window.location.replace("../") </script>';
+		//echo '<script> window.location.replace("../") </script>';
 	}else{
 		echo $stmt->error;
 	}
