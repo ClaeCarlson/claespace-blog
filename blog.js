@@ -7,18 +7,50 @@
 
         $(document).ready(function(){
 
+            $("#loginform").submit(function(event){
+                event.preventDefault();
+                
+                postData = "user=" + $("#loginuser").val();
+                postData += "&pass=" + $("#loginpass").val();
 
-            $('.carousel').slick({
-                //setting-name: setting-value
-                nextArrow: '<div type="button" class="slick-next"><i class="fas fa-chevron-right"></i></div>',
-                prevArrow: '<div type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></div>'
+                $.ajax({
+                    url: '/webserver1/portal/php/login.php',
+                    type: "POST",
+                    data: postData,
+                    success: function(data) {
+                        location.reload();
+                    }
+                });
+
+            });
+
+            $(".logout").click(function(){
+                $.ajax({
+                    url: '/webserver1/portal/php/logout.php',
+                    type: "POST",
+                    success: function(data) {
+                        location.reload();
+                    }
+                });
             });
 
             
 
             $("#submitcomment").click(function(){
 
+                // choose a color to give a second class with color?
+
+                // if admin, allow tags?
                 var comment = $("#commentbox").val();
+                comment = comment.replace(/<[^>]+>/ig,'');
+
+                if ($("#decorate-none").prop("checked")){
+                    //alert("none");
+                }
+                else if ($("#decorate-fade").prop("checked")){
+                    comment = "<span class='fadeMe'>" + comment + "</span>";
+                }
+
                 $("#commentbox").val("");
 
                 if (comment != "") {
@@ -110,6 +142,68 @@
                 
             });
 
+            $("#bandsuggestsubmit").click(function(){
+                
+
+                var bandname = $("#bandsuggestinput").val();
+                bandname = bandname.replace(/<[^>]+>/ig,'');
+                var credit = $("#bandsuggestcredit").val();
+                credit = credit.replace(/<[^>]+>/ig,'');
+
+                
+                $("#bandsuggestinput").val("");
+                $("#bandsuggestcredit").val("");
+
+                if (credit === ""){
+                    credit = "Anonymous";
+                }
+
+
+                if (bandname === ""){ 
+                }
+                else {
+                    $("#bandsuggest").css("display", "none");
+                    $("#bandsuggested").css("display", "block");
+                    var postData = "bandname=" + bandname;
+                    postData += "&credit=" + credit;
+                    $.ajax({
+                    url: '../php/createBandSuggestion.php',
+                    type: "POST",
+                    data: postData,
+                    success: function(data) {
+                    //alert(data);
+                    }
+                    });
+                }
+
+            });
+            $("#adminbandsubmit").click(function(){
+
+                var bandname = "bandname=" + $("#adminbandinput").val();
+                $("#adminbandinput").val("");
+
+
+                if (bandname != ""){
+                   $.ajax({
+                    url: '../php/createBand.php',
+                    type: "POST",
+                    data: bandname,
+                    success: function(data) {
+                        window.location = "";
+                    }
+                    }); 
+                }
+
+            });
+
+            $("#suggestmore").click(function(){
+                $("#bandsuggest").css("display", "block");
+                $("#bandsuggested").css("display", "none");
+
+            });
+
+
+            // JUST FOR HOME PAGE
 
         	if (home) {
 
@@ -167,9 +261,6 @@
                 $('html, body').animate({ scrollTop: 600 }, 'medium');
             });
         
-
-
-
         
 
 
@@ -193,6 +284,60 @@
 
   }      
 }); 
+function bandsearch(str){
+    if (parseInt(navigator.appVersion)<4) return;
+ var strFound;
+ if (window.find) {
+
+  // CODE FOR BROWSERS THAT SUPPORT window.find
+
+  strFound=self.find(str);
+  if (!strFound) {
+   strFound=self.find(str,0,1);
+   while (self.find(str,0,1)) continue;
+  }
+ }
+ else if (navigator.appName.indexOf("Microsoft")!=-1) {
+
+  // EXPLORER-SPECIFIC CODE
+
+  if (TRange!=null) {
+   TRange.collapse(false);
+   strFound=TRange.findText(str);
+   if (strFound) TRange.select();
+  }
+  if (TRange==null || strFound==0) {
+   TRange=self.document.body.createTextRange();
+   strFound=TRange.findText(str);
+   if (strFound) TRange.select();
+  }
+ }
+ else if (navigator.appName=="Opera") {
+  alert ("Opera browsers not supported, sorry...")
+  return;
+ }
+ if (!strFound) alert ("String '"+str+"' not found!")
+ return;
+}
+
+function reviewBand(review, el){
+    parent = (el).parentNode.parentNode;
+    bandname = parent.getElementsByClassName("suggestedband")[0].innerText;
+    credit = parent.getElementsByClassName("suggestedcredit")[0].innerText;
+    
+    postData = "review=" + review;
+    postData += "&bandname=" + bandname;
+    postData += "&credit=" + credit;
+    $.ajax({
+            type: 'POST',
+            url: '../../php/reviewBand.php',
+            type: "POST",
+            data: postData,
+            success: function(data) {
+                window.location = "";
+            }
+        });
+}
 
 // When the user clicks on the button, open the modal 
 function createpost() {
@@ -213,7 +358,8 @@ function showdropdown() {
 }
 
 function showlogin() {
-    document.getElementById("archivedropdown").style.display = "none";
+    if (document.getElementById("archivedropdown"))
+        document.getElementById("archivedropdown").style.display = "none";
     document.getElementById("logindropdown").style.display = "block";
 }
 
@@ -221,6 +367,7 @@ function showsignup() {
     document.getElementById("myModal").style.display = "block";
     document.getElementById("signup").style.display = "block";
 }
+
 
 // Close the dropdown menu if the user clicks outside of it
 
@@ -244,16 +391,18 @@ var fullpost = document.getElementsByClassName("fullpost")[0];
 
 
 // When the user clicks on <span> (x), close the modal
+if (closenewpost){
 closenewpost.onclick = function() {
     modal.style.display = "none";
     newpost.style.display = "none";
 
-}
+}}
+if (closefullpost){
 closefullpost.onclick = function() {
     modal.style.display = "none";
     fullpost.style.display = "none";
     $(".carousel").slick("removeSlide", null, null, true);
-}
+}}
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

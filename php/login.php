@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
 			$_SESSION['admin'] = 1;
 		}
 
-		header("location: ../");
+		
 	}
 	else {
 		echo "Incorrect password!";

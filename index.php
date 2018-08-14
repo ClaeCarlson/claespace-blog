@@ -26,13 +26,13 @@ if (!isset($_SESSION['username'])) {
         
         home = 1;
 
-        function logout(){
-
-            window.location = "php/logout.php";
-
-        }
-
         $(document).ready(function(){
+
+            $('.carousel').slick({
+                //setting-name: setting-value
+                nextArrow: '<div type="button" class="slick-next"><i class="fas fa-chevron-right"></i></div>',
+                prevArrow: '<div type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></div>'
+            });
 
 
             $.ajax({
@@ -67,7 +67,7 @@ if (!isset($_SESSION['username'])) {
         <span class="archsecondary" id="archiveback" style="float: right; margin-right: 20px"><i class="fas fa-arrow-left"></i></span>
         <?php
             if ($_SESSION['username'] != "") {
-                echo '<span onclick="logout()" class="navitem" style="float: right; margin-right: 20px">Log out</span>'; 
+                echo '<span class="logout navitem" style="float: right; margin-right: 20px">Log out</span>'; 
             }
             else
                 echo '<span id="navlogin" class="navitem" style="float: right; margin-right: 20px">Log in</span>
@@ -93,7 +93,7 @@ if (!isset($_SESSION['username'])) {
     <img class="background" id="background" crossorigin="" src="https://source.unsplash.com/featured/?autumn">
     <div id="header" class="header">
         <div id="headeritems">
-            <img class="icon" src="csicon_cut.png" onclick="history.go(0)">
+            <!--<img class="icon" src="csicon_cut.png" onclick="history.go(0)">-->
         <!--<span id="headerText">ClaeSpace</span>!-->
         <p id="blog">ClaeSpace • Blog</p>
         <hr style="width: 80%">
@@ -109,7 +109,7 @@ if (!isset($_SESSION['username'])) {
 
                 <?php
                     if ($_SESSION['username'] != "") {
-                      echo '<span onclick="logout()" class="menuitem">Log out (' . $_SESSION['username'] . ')</span>'; 
+                      echo '<span class="logout menuitem">Log out (' . $_SESSION['username'] . ')</span>'; 
                     }
                     else
                         echo '<span onclick="showlogin()" class="menuitem">Log in</span>';
@@ -119,8 +119,8 @@ if (!isset($_SESSION['username'])) {
             
                 <div id="logindropdown" class="dropdown-content">
                     <form method="post" action="php/login.php" id="loginform">
-                    <input placeholder="User" type="text" name="user" required>
-                    <input placeholder="Pass" type="password" name="pass" required>
+                    <input id='loginuser' placeholder="User" type="text" name="user" required>
+                    <input id='loginpass' placeholder="Pass" type="password" name="pass" required>
                     <input type="submit" name="" onclick="login()">
                     <span style="color: black; font-size: 12px;">Don't have an account? <span id="register" onclick="showsignup()">Fuck you</span></span>
                     </form>
@@ -245,6 +245,10 @@ if (!isset($_SESSION['username'])) {
 
             echo "Comment as <span id='user' style='color: #4f88a3'>" . $_SESSION['username'] . "</span><div id='addcomment'>
                 <textarea id='commentbox' placeholder='Comment...' name='comment'></textarea>
+                <div>
+                <input id='decorate-none' checked name='decoration' type='radio'>None
+                <input id='decorate-fade' name='decoration' type='radio'>Fade
+                </div>
                 <div id='submitcomment'>Post</div>
                 </div>";
 

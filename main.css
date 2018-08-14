@@ -4,6 +4,25 @@ body, html {
 	height: 100%;
 }
 
+/* ANIMATIONS */
+@keyframes fadeMe {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+
+}
+
+.fadeMe{
+	animation: fadeMe 2s infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear;
+	color: red;
+}
+
+
 #headerText {
 	line-height: 150px;
 	margin-top: 0px;
@@ -14,13 +33,12 @@ body, html {
 }
 
 #headeritems {
-	padding-top: 40px;
+	padding-top: 70px;
 	margin: 0 auto;
-	width: 55vh;
+	max-width: 70%;
 	text-align: center;
 	padding-bottom: 0px;
 	margin-bottom: 40px;
-
 }
 
 #menu {
@@ -107,7 +125,7 @@ body, html {
 	display: inline-block;
 	font-family: 'Pacifico', cursive;
 	color: white;
-	font-size: 5vh;
+	font-size: 30px;
 	padding-left: 10px;
 	padding-top: 20px;
 	margin-top: -60px !important;
@@ -790,7 +808,139 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	text-align: center;
 }
 
+/** Band Names page **/
+#bandcontent{
+	padding-left: 0;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+.bandname {
+	background: rgba(0, 0, 0, .3);
+	border: 1px solid white;
+	margin: 10px;
+	color: white;
+	padding: 10px;
+	font-size: 18px;
+	list-style-position: outside;
+	border-radius: 5px;
+}
+.bandli{
+	white-space: nowrap;
+}
+.bandtitle {
+	margin: 20px;
+	color: white;
+	padding: 10px;
+	text-align: center;
+}
+.bandsuggest{
+	font-size: 20px;
+	color: white;
+	width: 80%;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.bandinput{
+	width: 70%;
+	height: 30px;
+	border: 0;
+	outline: 0;
+	margin-top: 10px;
+	color: white;
+	background: transparent;
+	border-bottom: 1px solid white;
+}
+.bandsubmit{
+	cursor: pointer;
+	float: right;
+	margin-top: 10px;
+	margin-left: 20px;
+	width: 23%;
+	height: 30px;
+	background: transparent;
+	color: white;
+}
+#bandsuggested{
+	padding-top: 44px;
+	padding-bottom: 14px;
+	display: none;
+	text-align: center;
+	width: 50%;
+	margin: auto;
 
+}
+#suggestmore{
+	cursor: pointer;
+	margin-left: 10px;
+	width: 30%;
+	height: 30px;
+	background: transparent;
+	color: white;
+}
+#search{
+	width: 20%;
+}
+.bandrow:after{
+	content: "";
+    display: table;
+    clear: both;
+}
+.bandcol{
+	color: white;
+	text-align: center;
+	float: left;
+	width: 50%;
+
+}
+
+.bandtable table{
+	border-radius: 5px;
+	position: absolute;
+	width: 100vw;
+	top: 0; bottom: 0; left: 0; right: 0;
+}
+.bandtable th {color: white;}
+.bandtable tr {
+	background: rgba(0, 0, 0, .3);
+	font-size: 18px;
+	list-style-position: outside;
+}
+.bandtable td {
+	border-bottom: 1px solid white;
+	border-top: 1px solid white;
+	margin: 10px;
+	color: white;
+	padding: 10px;
+}
+.suggestedband{
+	width: auto;
+	border-left: 1px solid white;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.suggestedcredit{
+	width: 5%;
+	border-right: 1px solid white;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.bandapprove{
+	cursor: pointer;
+	padding-right: 6px;
+}
+.bandreject{
+	cursor: pointer;
+}
+
+.bandapprove:hover{
+	color: #4f88a3;
+}
+.bandreject:hover{
+	color:#FF7575;
+}
 
 /** Responsive **/
 
