@@ -42,18 +42,35 @@
 
                 // if admin, allow tags?
                 var comment = $("#commentbox").val();
+                var effect = "";
+                var color = $("#commentcolor").val();
                 comment = comment.replace(/<[^>]+>/ig,'');
 
+                if (comment != "") {
+
                 if ($("#decorate-none").prop("checked")){
-                    //alert("none");
+                    effect = "";
                 }
                 else if ($("#decorate-fade").prop("checked")){
-                    comment = "<span class='fadeMe'>" + comment + "</span>";
+                    effect = "fade";
                 }
+                else if ($("#decorate-rainbow").prop("checked")){
+                    effect = "rainbow";
+                }
+                else if ($("#decorate-wave").prop("checked")){
+                    effect = "wave lettering";
+                }
+
+                if ($("#decorate-rs").prop("checked")){
+                    effect += " rs";
+                }
+
+                comment = '<span style="color:#' + color + '" class="' + effect + '">' + comment + '</span>';
+
 
                 $("#commentbox").val("");
 
-                if (comment != "") {
+                
 
                     var user = $("#user_id").text();
                     var post_id = $("#fullid").text();
@@ -68,6 +85,7 @@
                     //alert(data);
                         postData = "post_id=" + post_id;
                         ajaxComments(postData);
+                        $(".lettering").lettering();
                     }
                     });
                 }
@@ -140,6 +158,18 @@
                     $("#logindropdown").css("display","none");
                 }
                 
+            });
+            $("#adminbandinput").keypress(function(e){
+                if(!/[0-9a-zA-Z-_!@#$%^&*()+{}~,.?''""]/.test(String.fromCharCode(e.which)))
+                    return false;
+            });
+            $("#bandsuggestinput").keypress(function(e){
+                if(!/[0-9a-zA-Z-_!@#$%^&*()+{}~,.?''""]/.test(String.fromCharCode(e.which)))
+                    return false;
+            });
+            $("#bandsuggestcredit").keypress(function(e){
+                if(!/[0-9a-zA-Z-_!@#$%^&*()+{}~,.?''""]/.test(String.fromCharCode(e.which)))
+                    return false;
             });
 
             $("#bandsuggestsubmit").click(function(){
@@ -334,6 +364,7 @@ function reviewBand(review, el){
             type: "POST",
             data: postData,
             success: function(data) {
+                //alert(data);
                 window.location = "";
             }
         });
@@ -566,6 +597,7 @@ window.onclick = function(event) {
             data: postData,
             success: function(data) {
                 $("#fullcomments").html(data);
+                $(".lettering").lettering();
             }
         });
     }

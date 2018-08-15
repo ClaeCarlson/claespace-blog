@@ -19,8 +19,8 @@ if (!isset($_SESSION['username'])) {
     <link href="https://fonts.googleapis.com/css?family=Galada|Roboto|Press+Start+2P" rel="stylesheet">
 	<link rel="icon" href="../cs.png">
 	<link rel="stylesheet" type="text/css" href="../main.css">
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="../blog.js"></script>
+    <script src="../js/jqueryv3_3_1.js"></script>
+    <script src="../js/blog.js"></script>
 	<script type="text/javascript">
 		
 		$(document).ready(function(){
@@ -42,7 +42,7 @@ if (!isset($_SESSION['username'])) {
 	<div id="header" class="categoryheader">
 		<div id="headeritems">
             <!--<img class="icon" src="../csicon_cut.png" onclick="history.go(0)">-->
-        	<p id="blog" style="font-size: 24px">ClaeSpace • Band Names</p>
+        	<p id="blog" style="font-family: Futura; font-size: 24px"><span style="letter-spacing: 8px;">CLAESPACE</span><br><span style="letter-spacing: 4px;">BAND NAMES</span></p>
         	<hr style="width: 80%">
         	<p id="menu">
         		<span class="menuitem" onclick="window.location='../projects'">Projects</span> • 

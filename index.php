@@ -1,7 +1,6 @@
 <?php 
 
 session_start();
-
 if (!isset($_SESSION['username'])) {
     $_SESSION['username'] = "";
     $_SESSION['admin'] = 0;
@@ -18,15 +17,64 @@ if (!isset($_SESSION['username'])) {
     <link href="https://fonts.googleapis.com/css?family=Galada|Roboto|Press+Start+2P" rel="stylesheet">
     <link rel="icon" href="cs.png">
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="animations.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/jqueryv3_3_1.js"></script>
     <script type="text/javascript" src="slick/slick.min.js"></script>
-    <script src="blog.js"></script>
+    <script src="js/jscolor.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/jquery.lettering.js"></script>
     <script type="text/javascript">
         
         home = 1;
 
         $(document).ready(function(){
+
+            if (document.cookie.indexOf("night") != -1){
+                night();
+            }
+
+
+
+            $("#mode").click(function(){
+                if ($(this).attr("class") == "fas fa-sun"){
+                    document.cookie = 'theme=night';
+                    night();
+                }
+                else {
+                    document.cookie = 'theme=day';
+                    day();
+                }
+                
+            });
+            
+            function day(){
+                
+                $("#mode").removeClass("fa-moon");
+                $("#mode").addClass("fa-sun");
+                document.documentElement.style.setProperty('--main-bg-color', '#fffff2');
+                document.documentElement.style.setProperty('--palette-color-1', 'orange');
+                document.documentElement.style.setProperty('--palette-color-2', '#4f88a3');
+                document.documentElement.style.setProperty('--text-color', 'grey');
+                document.documentElement.style.setProperty('--main-color-hover', 'rgba(0, 0, 0, 0.1)');
+                $("hr").css("border", "1px solid lightgrey");
+                $("#commentbox").css("color", "black");
+            }
+            function night(){
+                
+                $("#mode").removeClass("fa-sun");
+                $("#mode").addClass("fa-moon");
+                document.documentElement.style.setProperty('--main-bg-color', '#0E191E');
+                document.documentElement.style.setProperty('--palette-color-1', 'white');
+                document.documentElement.style.setProperty('--palette-color-2', '');
+                document.documentElement.style.setProperty('--text-color', 'lightgrey');
+                document.documentElement.style.setProperty('--main-color-hover', 'rgba(255, 255, 255, 0.05)');
+                $("hr").css("border", "1px solid grey");
+                $("#commentbox").css("color", "white");
+            }
+
+
+            $(".lettering").lettering();
 
             $('.carousel').slick({
                 //setting-name: setting-value
@@ -95,7 +143,7 @@ if (!isset($_SESSION['username'])) {
         <div id="headeritems">
             <!--<img class="icon" src="csicon_cut.png" onclick="history.go(0)">-->
         <!--<span id="headerText">ClaeSpace</span>!-->
-        <p id="blog">ClaeSpace • Blog</p>
+        <p id="blog">ClaeSpace<i id='mode' class="fas fa-sun"></i>Blog</p>
         <hr style="width: 80%">
         <p id="menu">
             <span class="menuitem" onclick="window.location='./projects'">Projects</span> • 
@@ -149,7 +197,7 @@ if (!isset($_SESSION['username'])) {
         ?>
         
 
-
+        <!--
         <div class="post" onclick="fullPost(this)">
             <span class='post_id' style='display: none' id='post_id'>0</span>
 
@@ -157,7 +205,7 @@ if (!isset($_SESSION['username'])) {
             <img class="img" src="https://prettymuchamazing.com/.image/t_share/MTM3NjY0ODE2MTM4NDMwMTEw/sufjan-stevensjpg.jpg">
             </div>
             
-            <!-- Title max 32 char-->
+           Title max 32 char
 
 
             <h2 class="title">Part 2: Sufjan Stevens visits me in a dream</h2><span class="cat" onclick="categories(this.innerText)">Thoughts</span><span class="time">2:53pm - 07.18.18</span>
@@ -178,7 +226,7 @@ if (!isset($_SESSION['username'])) {
 <span class="video"></span>
     <span class='defimg'>0</span>
           
-    </div>
+    </div>-->
 
     <hr>
 
@@ -245,10 +293,21 @@ if (!isset($_SESSION['username'])) {
 
             echo "Comment as <span id='user' style='color: #4f88a3'>" . $_SESSION['username'] . "</span><div id='addcomment'>
                 <textarea id='commentbox' placeholder='Comment...' name='comment'></textarea>
-                <div>
+                <div>";
+
+                if ($_SESSION['admin'] == 1){
+                    echo "<div>Effect:
                 <input id='decorate-none' checked name='decoration' type='radio'>None
-                <input id='decorate-fade' name='decoration' type='radio'>Fade
+                <input id='decorate-fade' name='decoration' type='radio'><span class='fade'>Fade</span>
+                <input id='decorate-rainbow' name='decoration' type='radio'><span class='rainbow'>Rainbow</span>
+                <input id='decorate-wave' name='decoration' type='radio'><span class='lettering wave'>Wave</span>
                 </div>
+                <div>Color: <input id='commentcolor' class='jscolor' value='808080'>
+                <input id='decorate-rs' type='checkbox'>RS
+                </div>";
+                }
+                
+            echo "</div>
                 <div id='submitcomment'>Post</div>
                 </div>";
 

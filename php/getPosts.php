@@ -107,6 +107,8 @@ else {
 		}
 		else{
 
+			$images = "";
+
 			switch ($cat){
 				case "Thoughts":
 					$thumb_img = "thumbs/thoughts.png";

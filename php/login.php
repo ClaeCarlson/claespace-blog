@@ -15,7 +15,6 @@ if ($result->num_rows > 0) {
 	$hashpass = password_hash($pass, PASSWORD_DEFAULT);
 
 	if (password_verify($pass, $result["pass"])) {
-		echo "yes";
 		session_start();
 		$_SESSION['username'] = $user;
 		$_SESSION['user_id'] = $result['user_id'];
@@ -23,6 +22,8 @@ if ($result->num_rows > 0) {
 		if ( $result["admin"] == 1) {
 			$_SESSION['admin'] = 1;
 		}
+
+		header('Location: ../');
 
 		
 	}

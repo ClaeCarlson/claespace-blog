@@ -1,0 +1,165 @@
+@keyframes wave {
+  0% {
+    transform: translateY(0); }
+  25% {
+    transform: translateY(5px); }
+  50% {
+    transform: translateY(0); }
+  75% {
+    transform: translateY(-5px); }
+  100% {
+    transform: translateY(0px); } }
+.wave .char1 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -50ms; }
+.wave .char2 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -100ms; }
+.wave .char3 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -150ms; }
+.wave .char4 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -200ms; }
+.wave .char5 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -250ms; }
+.wave .char6 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -300ms; }
+.wave .char7 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -350ms; }
+.wave .char8 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -400ms; }
+.wave .char9 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -450ms; }
+.wave .char10 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -500ms; }
+.wave .char11 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -550ms; }
+.wave .char12 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -600ms; }
+.wave .char13 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -650ms; }
+.wave .char14 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -700ms; }
+.wave .char15 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -750ms; }
+.wave .char16 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -800ms; }
+.wave .char17 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -850ms; }
+.wave .char18 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -900ms; }
+.wave .char19 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -950ms; }
+.wave .char20 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1000ms; }
+.wave .char21 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1050ms; }
+.wave .char22 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1100ms; }
+.wave .char23 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1150ms; }
+.wave .char24 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1200ms; }
+.wave .char25 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1250ms; }
+.wave .char26 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1300ms; }
+.wave .char27 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1350ms; }
+.wave .char28 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1400ms; }
+.wave .char29 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1450ms; }
+.wave .char30 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1500ms; }
+.wave .char31 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1550ms; }
+.wave .char32 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1600ms; }
+.wave .char33 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1650ms; }
+.wave .char34 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1700ms; }
+.wave .char35 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1750ms; }
+.wave .char36 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1800ms; }
+.wave .char37 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1850ms; }
+.wave .char38 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1900ms; }
+.wave .char39 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -1950ms; }
+.wave .char40 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2000ms; }
+.wave .char41 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2050ms; }
+.wave .char42 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2100ms; }
+.wave .char43 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2150ms; }
+.wave .char44 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2200ms; }
+.wave .char45 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2250ms; }
+.wave .char46 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2300ms; }
+.wave .char47 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2350ms; }
+.wave .char48 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2400ms; }
+.wave .char49 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2450ms; }
+.wave .char50 {
+  display: inline-block;
+  animation: wave 0.66s linear infinite -2500ms; }
+.wave {
+}
+
+/*# sourceMappingURL=animations.css.map */

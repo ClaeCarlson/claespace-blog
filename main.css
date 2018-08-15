@@ -4,24 +4,60 @@ body, html {
 	height: 100%;
 }
 
+:root {
+	--main-bg-color: #fffff2;
+	--main-color-hover: rgba(0, 0, 0, 0.1);
+	--palette-color-1: orange;
+	--palette-color-2: #4f88a3;
+	--text-color: grey;
+}
+
 /* ANIMATIONS */
-@keyframes fadeMe {
+@keyframes fade {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
   }
-
+}
+@keyframes rainbow {
+	7.3% {color: red;}
+	21.5% {color: orange;}
+	35.8% {color: yellow;}
+	50% {color: green;}
+	64.3% {color: blue;}
+	78.6% {color: indigo;}
+	92.8% {color: violet ;}
+	100%{color: red;}
+}
+@font-face {
+	font-family:"RuneScape Bold Font Regular";
+	src:url("fonts/runescape_bold_font.eot?") format("eot"),
+	url("fonts/runescape_bold_font.woff") format("woff"),
+	url("fonts/runescape_bold_font.ttf") format("truetype"),
+	url("fonts/runescape_bold_font.svg#RuneScape-Bold-Font") format("svg");
+	font-weight:normal;
+	font-style:normal;
 }
 
-.fadeMe{
-	animation: fadeMe 2s infinite;
+.rs{
+	font-family:"RuneScape Bold Font Regular";
+	color: #ffff00;
+	text-shadow: 1px 1px black;
+	font-size: 20px;
+}
+
+.rainbow{
+	animation: rainbow 10s infinite;
+	animation-timing-function: linear;
+}
+
+.fade{
+	animation: fade 2s infinite;
 	animation-direction: alternate;
 	animation-timing-function: linear;
-	color: red;
 }
-
 
 #headerText {
 	line-height: 150px;
@@ -75,7 +111,7 @@ body, html {
 }
 #reddit a{
 	padding: 10px;
-	color: orange;
+	color: var(--palette-color-1);
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -130,25 +166,20 @@ body, html {
 	padding-top: 20px;
 	margin-top: -60px !important;
 	margin-bottom: 0px !important;
-
 }
 
-.icon {
-	display: inline-block;
-	width: 60px;
-	height: 60px;
+#mode{
+	font-size: 16px;
+	padding: 0px 10px 0px 10px;
+	position: relative;
+	top: -6px
 }
-
-.icon:hover {
-	opacity: 1.0 !important;
+#mode:hover {
 	cursor: pointer;
-
-	-webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
- -webkit-box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.67);
--moz-box-shadow:    0px 0px 30px 0px rgba(255, 255, 255, 0.67);
-box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
+	-webkit-stroke-width: 5.3px;
+      -webkit-stroke-color: #FFFFFF;
+      -webkit-fill-color: #FFFFFF;
+      text-shadow: 1px 0px 20px white;
 }
 
 .navicon {
@@ -236,7 +267,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 
 #register {
 	text-decoration: underline;
-	color: #4f88a3;
+	color: var(--palette-color-2);
 	cursor: pointer;
 }
 
@@ -251,7 +282,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 
 #signup {
 	display: none;
-	background-color: #fefefe;
+	background-color: var(--main-bg-color);
     margin: 20% auto; /* 15% from the top and centered */
     padding: 40px;
     width: 60%;
@@ -283,7 +314,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 #profupload{
 	width: 60px;
 	height: 30px;
-	background-color: orange;
+	background-color: var(--palette-color-1);
 	padding: 5px;
 	border-radius: 2px;
 	color: white;
@@ -293,7 +324,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	font-size: 16px;
 	height: 40px;
 	width: 80px;
-	background-color: #4f88a3;
+	background-color: var(--palette-color-2);
 	color: white;
 	cursor: pointer;
 	padding: 5px;
@@ -318,7 +349,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 #content {
 	padding-top: 10px;
 	padding-bottom: 10px;
-	background-color: #fffff2;
+	background-color: var(--main-bg-color);
 	width: 100%;
 }
 #content:after {
@@ -331,7 +362,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	font-size: 24px;
 	text-align: center;
 	padding-top: 20px;
-	color: orange;
+	color: var(--palette-color-1);
 }
 
 .newpostModal {
@@ -361,13 +392,13 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 
 .fullpost {
 	display: none;
-	background-color: #fefefe;
+	background-color: var(--main-bg-color);
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     width: 90%; /* Could be more or less, depending on screen size */
     height: 70%;
     overflow: auto;
-    color: grey;
+    color: var(--text-color);
     
     
 }
@@ -396,7 +427,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 
 #fulltitle {
 	font-size: 20px;
-	color: orange;
+	color: var(--palette-color-1);
 }
 #cattime {
 
@@ -444,7 +475,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 .admincomment {
 	min-height: 90px;
 	width: 100%;
-	border: 2px solid #4f88a3;;
+	border: 2px solid var(--palette-color-2);;
 	border-radius: 2px;
 	margin-top: 10px;
 }
@@ -473,7 +504,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 }
 .commentauthor{
 	padding: 10px 10px 0px 0px;
-	color: #4f88a3;
+	color: var(--palette-color-2);
 	display: inline-block;
 }
 .commenttime{
@@ -500,16 +531,20 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	resize: none;
 	width: 97%;
 	height: 100px;
+	background-color: var(--main-bg-color);
 }
 #submitcomment {
 	float: right;
 	width: 60px;
-	background-color: orange;
+	background-color: var(--palette-color-2);
 	color: white;
 	text-align: center;
 	padding: 10px;
 	cursor: pointer;
 	border-radius: 2px;
+}
+#submitcomment:hover {
+	filter: brightness(70%);
 }
 
 #videocontainer {
@@ -532,7 +567,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 .modal-content {
 	display: none;
 
-    background-color: #fefefe;
+    background-color: var(--main-bg-color);
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     width: 90%; /* Could be more or less, depending on screen size */
@@ -603,7 +638,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	color: white;
 	border-radius: 2px;
 	margin: auto;
-	background-color: #4f88a3;
+	background-color: var(--palette-color-2);
 }
 #newpostbtn:hover{
 	background-color: #3f6e84;
@@ -618,16 +653,21 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 
 }
 .post:hover{
-	background-color: rgba(237, 237, 225, 1);
+	background-color: var(--main-color-hover);
 	cursor: pointer;
 }
+
+hr{
+	border: 1px solid lightgrey;
+}
+
 .title{
 	padding-left: 16px;
 	margin-left: 150px;
 	word-break: break-word;
 	font-size: 20px;
 	position: absolute;
-	color: orange;
+	color: var(--palette-color-1);
 
   	text-overflow: ellipsis;
 	overflow: hidden;
@@ -688,7 +728,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 }
 .cat:hover{
 	text-decoration: underline;
-	color: black;
+	color: var(--palette-color-2);
 	cursor: pointer;
 }
 .time{
@@ -719,6 +759,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	text-align: center;
 	padding-bottom: 16px;
 	height: 30px;
+	color: var(--text-color);
 }
 
 #footer{
@@ -733,9 +774,12 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 	color: white;
 	border-radius: 5px;
 	display: inline-block;
-	background-color: orange;
+	background-color: var(--palette-color-2);
 	padding: 10px;
 	bottom: 
+}
+#footer div:hover{
+	filter: brightness(70%);
 }
 #adv {
 	float: right;
@@ -936,7 +980,7 @@ box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 }
 
 .bandapprove:hover{
-	color: #4f88a3;
+	color: var(--palette-color-2);
 }
 .bandreject:hover{
 	color:#FF7575;
