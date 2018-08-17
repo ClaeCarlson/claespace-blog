@@ -15,7 +15,7 @@ if (!isset($_SESSION['username'])) {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Galada|Roboto|Press+Start+2P" rel="stylesheet">
-    <link rel="icon" href="cs.png">
+    <link rel="icon" href="thumbs/claeicon.png">
     <link rel="stylesheet" type="text/css" href="main.css">
     <link rel="stylesheet" type="text/css" href="animations.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
@@ -105,7 +105,7 @@ if (!isset($_SESSION['username'])) {
     <span id="user_id" style="display: none;"><?php echo $_SESSION['user_id']; ?></span>
 
     <div id="nav">
-        <img class="icon navicon" src="csicon_cut.png" onclick="history.go(0)">
+        <img class="icon navicon" src="thumbs/claeicon.png" onclick="history.go(0)">
         <span class="navitem" onclick="window.location = './projects'">Projects</span>
         <span class="navitem">About</span>
         <span class="navitem" id="navarchive">Archive</span>

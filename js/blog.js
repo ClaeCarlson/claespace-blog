@@ -38,6 +38,8 @@
 
             $("#submitcomment").click(function(){
 
+
+
                 // choose a color to give a second class with color?
 
                 // if admin, allow tags?
@@ -74,6 +76,7 @@
 
                     var user = $("#user_id").text();
                     var post_id = $("#fullid").text();
+
 
                     var postData = "user=" + user + "&comment=" + comment + "&post_id=" + post_id;
 
